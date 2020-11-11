@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pildora</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet"
+            th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+    <div class="container">
+        <br>
+        <div>
+            <a href="/crear" class="btn btn-primary">Agregar</a>
+        </div>
+        <h2 th:if="${lista.isEmpty()}">No hay contribuyentes</h2>
+        <div th:if="${!lista.isEmpty()}">
+            <h2>Contribuyentes</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="contribuyente : ${lista}">
+                        <td th:text="${contribuyente.nombre}">
+                        <td th:text="${contribuyente.apellido}">
+                        <td th:text="${contribuyente.direccion}">
+                        <td th:text="${contribuyente.telefono}">
+                        <td><a class="btn btn-info" 
+                               th:href="@{/actualizar/{id}(id=${contribuyente.id})}">Editar</a></td>
+                        <td><a class="btn btn-danger" 
+                               th:href="@{/eliminar/{id}(id=${contribuyente.id})}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
